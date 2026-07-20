@@ -1,0 +1,79 @@
+/*
+   Banalyzer Theme
+*/
+
+/* Main content */
+.main .block-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    max-width: 1200px;
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"] {
+    border-right: 1px solid #E5E7EB;
+}
+
+/* Headings */
+h1 {
+    font-weight: 700;
+    color: #111827;
+}
+
+h2 {
+    font-weight: 600;
+    color: #1F2937;
+}
+
+h3 {
+    font-weight: 600;
+}
+
+/* Cards */
+.metric-card {
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 16px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Image */
+img {
+    border-radius: 12px;
+}
+
+/* Footer */
+footer {
+    visibility: hidden;
+}
+
+
+/* ============================================
+   Prediction Card
+============================================ */
+
+
+.prediction-card {
+    background: #1E293B;
+    border: 1px solid #334155;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.prediction-title {
+    font-size: 0.95rem;
+    color: #6B7280;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.prediction-value {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-top: 8px;
+}

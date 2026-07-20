@@ -1,0 +1,6 @@
+{
+    "overripe": 0,
+    "ripe": 1,
+    "rotten": 2,
+    "unripe": 3
+}
