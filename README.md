@@ -2,7 +2,7 @@
 
 ## AI-Powered Banana Ripeness Classification
 
-> From image to insight, one banana at a time.
+> Production-inspired Deep Learning application for banana ripeness classification using TensorFlow, MobileNetV2, and Streamlit.
 
 Banalyzer is a computer vision application that classifies banana ripeness from a single image using a MobileNetV2-based deep learning model. The application predicts one of four ripeness stages: Unripe, Ripe, Overripe, or Rotten.
 
@@ -18,25 +18,56 @@ Beyond model development, Banalyzer emphasizes software engineering practices su
 ![MobileNetV2](https://img.shields.io/badge/Model-MobileNetV2-success?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 [![Live Demo](https://img.shields.io/badge/Live-Demo-Online-success?style=for-the-badge&logo=streamlit)](https://banana-ripeness-predictor.streamlit.app) 
-![Version](https://img.shields.io/badge/Version-v1.0.0-blue?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-v1.1.0-blue?style=for-the-badge)
+
+## Project Snapshot
+
+| Property | Value |
+|----------|-------|
+| Version | v1.1.0 |
+| Language | Python 3.13 |
+| Framework | TensorFlow 2.20 |
+| Model | MobileNetV2 |
+| Classes | 4 |
+| Accuracy | 72.5% |
+| Deployment | Streamlit |
+| License | MIT |
+
+
+
 
 ## 🌐 Live Demo
 
 Experience Banalyzer directly in your browser without any installation.
 
 **🔗 Live Application:**  
-https://banana-ripeness-predictor.streamlit.app
+**🚀 Live Demo:** [Open Banalyzer](https://banana-ripeness-predictor.streamlit.app)
 
 > Upload a banana image and receive a ripeness prediction powered by a MobileNetV2 deep learning model.
 
-## Highlights
 
-- Four-class banana ripeness classification
-- MobileNetV2 transfer learning
-- TensorFlow 2.20 and Streamlit
-- Confidence score and probability visualization
-- Modular production-oriented architecture
-- Interactive web application
+## Table of Contents
+
+- [🌐 Live Demo](#-live-demo)
+- [📖 Overview](#overview)
+- [💡 Why Banalyzer?](#-why-banalyzer)
+- [✨ Features](#features)
+- [🏗️ Engineering Highlights](#️-engineering-highlights)
+- [🧠 Design Decisions](#design-decisions)
+- [🛠️ Technology Stack](#technology-stack)
+- [🏛️ Project Architecture](#project-architecture)
+- [📂 Repository Structure](#repository-structure)
+- [📚 Project Documentation](#-project-documentation)
+- [📸 Application Preview](#application-preview)
+- [📈 Model Performance](#model-performance)
+- [📦 Dataset](#dataset)
+- [⚙️ Installation](#installation)
+- [🚀 Usage](#usage)
+- [🔮 Future Improvements](#future-improvements)
+- [🙏 Acknowledgements](#acknowledgements)
+- [👨‍💻 Author](#author)
+- [📄 License](#license)
+
 
 
 # Overview
@@ -48,6 +79,14 @@ The model leverages **Transfer Learning** with **MobileNetV2**, enabling efficie
 The application is designed with software engineering best practices in mind, including modular architecture, reusable components, centralized configuration, structured logging, and a clean separation between training, evaluation, inference, and presentation layers.
 
 The repository demonstrates how machine learning and software engineering practices can be combined to build a maintainable and deployable AI application.
+
+# Why Banalyzer?
+
+Many machine learning projects stop after training a model. Banalyzer was built to demonstrate the complete lifecycle of a production-inspired AI application.
+
+The project combines computer vision, transfer learning, software engineering, and user-centric design into a maintainable and deployable solution. Rather than focusing solely on model accuracy, it emphasizes clean architecture, reusable components, centralized configuration, structured documentation, and an intuitive user experience.
+
+Banalyzer reflects the engineering practices used to transform a trained model into software that can be shared, maintained, and extended.
 
 
 # Features
@@ -66,6 +105,18 @@ The repository demonstrates how machine learning and software engineering practi
 -  Prediction metadata
 -  Interactive Streamlit dashboard
 -  Production-ready project structure
+
+
+# Engineering Highlights
+
+- Modular software architecture
+- MobileNetV2 transfer learning pipeline
+- Image validation before inference
+- Reusable prediction pipeline
+- Centralized configuration management
+- Interactive Streamlit dashboard
+- Comprehensive technical documentation
+- Production-inspired project organization
 
 
 # Design Decisions
@@ -103,15 +154,17 @@ The repository follows several software engineering best practices, including:
 
 # Technology Stack
 
-Programming Language - Python 3.13 
-Deep Learning - TensorFlow 2.20 
-Model - MobileNetV2 
-Computer Vision - OpenCV, Pillow 
-Data Processing - NumPy, Pandas 
-Visualization - Matplotlib 
-Web Framework - Streamlit 
-Version Control - Git & GitHub 
-Model Format - `.keras` |
+| Category | Technology |
+|----------|------------|
+| Programming Language | Python 3.13 |
+| Deep Learning | TensorFlow 2.20 |
+| Model | MobileNetV2 |
+| Computer Vision | OpenCV, Pillow |
+| Data Processing | NumPy, Pandas |
+| Visualization | Matplotlib |
+| Web Framework | Streamlit |
+| Version Control | Git & GitHub |
+| Model Format | `.keras` |
 
 
 # Project Architecture
@@ -151,9 +204,8 @@ Model Format - `.keras` |
 Banalyzer/
 │
 ├── assets/                 # Images and UI assets
-├── data/                   # Dataset (not included)
+├── data/                   # Dataset (download separately, see Dataset section)
 ├── docs/                   # Project documentation
-├── logs/                   # Training logs (generated locally)
 ├── models/                 # Trained model and class mapping
 ├── outputs/                # Evaluation artifacts (generated locally)
 ├── utils/                  # Reusable utility modules
@@ -168,6 +220,20 @@ Banalyzer/
 ├── LICENSE
 └── README.md
 ```
+
+# Project Documentation
+
+Additional technical documentation is available in the `docs/` directory.
+
+| Document | Description |
+|----------|-------------|
+| architecture.md | Project architecture and design decisions |
+| dataset.md | Dataset organization and preprocessing |
+| model.md | Model training methodology and configuration |
+| deployment.md | Deployment instructions |
+| testing/manual_test_matrix.md | Manual testing scenarios |
+| testing/validation_summary.md | Validation results |
+| testing/known_limitations.md | Current limitations and future improvements |
 
 
 # Application Preview
@@ -279,7 +345,7 @@ Follow the steps below to run Banalyzer locally.
 ## 1. Clone the Repository
 
 ```bash
-git clone https://github.com/<your-username>/Banalyzer.git
+git clone https://github.com/Shivv-Dev/Banalyzer.git
 cd Banalyzer
 ```
 
@@ -375,8 +441,9 @@ Their tools made this project possible.
 
 Machine Learning | Computer Vision | Python | Software Engineering
 
-- LinkedIn: https://www.linkedin.com/in/shiva-poojith-alli
-- GitHub: https://github.com/Shivv-Dev
+LinkedIn: [Shiva Poojith Alli](https://www.linkedin.com/in/shiva-poojith-alli)
+
+GitHub: [Shivv-Dev](https://github.com/Shivv-Dev)
 
 If you found this project interesting, feel free to connect or reach out.
 
@@ -390,6 +457,8 @@ See the [LICENSE](LICENSE) file for more information.
 
 ---
 
-If you found this project useful, consider starring the repository. Feedback and contributions are always welcome.
+If you found this project interesting, consider giving it a ⭐ on GitHub.
 
-Thank you for taking the time to explore # Banalyzer! 
+Feedback, suggestions, and contributions are always welcome.
+
+Built with ❤️ using Python, TensorFlow, and Streamlit.

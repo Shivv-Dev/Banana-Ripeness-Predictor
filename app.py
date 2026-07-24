@@ -24,10 +24,15 @@ from predict import (
 from config import PREDICTION_COLORS
 from dataclasses import dataclass
 
-import logging
 import tempfile
 import time
 from pathlib import Path
+
+from validators.image_validator import (
+    load_validator,
+    validate_image,
+    ValidationResult,
+)
 
 from utils.logger import get_logger
 
@@ -149,6 +154,7 @@ PREDICTION_INSIGHTS = {
 #configure_page ()
 #load_css ()
 #get_model ()
+#get_validator()
 
 def configure_page() -> None:
     """Configure the Streamlit page."""
@@ -196,6 +202,14 @@ class ConfidenceMetadata:
     color: str
     icon: str
 
+@st.cache_resource
+def get_validator() -> keras.Model:
+    """
+    Load and cache the ImageNet validator model.
+    """
+
+    return load_validator()
+
 
 #3 Input & Inference
 # render_uploader ()
@@ -212,7 +226,7 @@ def render_uploader():
     """
 
     uploaded_file = st.file_uploader(
-        "Upload a Banana Image",
+        "Drag & Drop or Click to Browse ",
         type=["jpg", "jpeg", "png"],
     )
 
@@ -224,7 +238,7 @@ def render_uploader():
     st.image(
         image,
         caption="Uploaded Image",
-        use_container_width=True,
+        width=320,
     )
 
     return uploaded_file
@@ -306,6 +320,7 @@ def run_prediction(
 
 #4 Reusable UI Components
 #render_card ()
+#render_validation_error()
 #get_confidence_metadata ()
 
 def render_card(
@@ -325,18 +340,80 @@ def render_card(
 
         st.markdown(
             f"""
-<h2 style="
-    color:{color};
-    text-align:center;
-    margin:0;
-    padding:12px 0;
+<div style="
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:8px;
+    padding:6px 0;
 ">
-    {icon} {value}
-</h2>
+
+<span style="
+    font-size:18px;
+">
+{icon}
+</span>
+
+<span style="
+    color:{color};
+    font-size:26px;
+    font-weight:700;
+    line-height:1.2;
+">
+{value}
+</span>
+
+</div>
 """,
             unsafe_allow_html=True,
         )
 
+
+def render_validation_error(
+    validation: ValidationResult,
+) -> None:
+    """
+    Render a professional validation card when the uploaded
+    image does not contain a banana.
+    """
+
+    confidence = validation.confidence * 100
+
+    with st.container(border=True):
+
+        st.markdown("## ⚠ No Banana Detected")
+
+        st.write(
+            "The uploaded image doesn't appear to contain a banana."
+        )
+
+        st.divider()
+
+        st.markdown("### 🔍 Detected Object")
+
+        st.info(
+            f"**{validation.label.title()}** ({confidence:.1f}%)"
+        )
+
+        st.divider()
+
+        st.markdown("### 📋 Please upload")
+
+        st.markdown(
+            """
+✅ A banana
+
+✅ Good lighting
+
+✅ Single fruit
+
+✅ JPG / PNG image
+"""
+        )
+
+        st.caption(
+            "Banalyzer analyzes banana ripeness only."
+        )
 
 def get_confidence_metadata(
     confidence: float,
@@ -402,7 +479,7 @@ def render_prediction_summary(
     result: PredictionResult,
 ) -> None:
     """
-    Render the prediction and confidence summary cards.
+    Render compact prediction and confidence cards.
     """
 
     prediction_color = PREDICTION_COLORS[result.predicted_class]
@@ -415,7 +492,10 @@ def render_prediction_summary(
         result.confidence,
     )
 
-    prediction_col, confidence_col = st.columns(2)
+    prediction_col, confidence_col = st.columns(
+        2,
+        gap="small",
+    )
 
     with prediction_col:
         render_card(
@@ -428,11 +508,10 @@ def render_prediction_summary(
     with confidence_col:
         render_card(
             title=confidence_label,
-            value=f"{result.confidence:.2%}",
+            value=f"{result.confidence:.1%}",
             color=confidence_color,
             icon=confidence_icon,
         )
-
 
 def render_confidence_gauge(
     result: PredictionResult,
@@ -441,7 +520,7 @@ def render_confidence_gauge(
     Render a visual confidence gauge for the current prediction.
     """
 
-    st.subheader("📈 Confidence Gauge")
+    st.subheader("Confidence")
 
     level, description = get_confidence_interpretation(
         result.confidence
@@ -460,7 +539,7 @@ def render_confidence_gauge(
 
     st.progress(result.confidence)
 
-    st.caption("Low ◀──────────────▶ High")
+    st.caption("Low        High")
 
     st.caption(badge_label)
 
@@ -478,7 +557,7 @@ def render_probability_section(
 
     st.divider()
 
-    st.subheader("Probability Distribution")
+    st.subheader("Probabilities")
 
     for class_name, probability in result.probabilities.items():
 
@@ -499,10 +578,10 @@ def render_prediction_explanation(
     result: PredictionResult,
 ) -> None:
     """
-    Render a human-readable explanation of the prediction.
+    Render a compact explanation of the prediction.
     """
 
-    st.subheader("🧠 Prediction Explanation")
+    st.subheader("Prediction Explanation")
 
     confidence_level, explanation = (
         get_confidence_interpretation(result.confidence)
@@ -512,35 +591,34 @@ def render_prediction_explanation(
         get_runner_up_prediction(result)
     )
 
-    left_col, right_col = st.columns(2)
+    with st.container(border=True):
 
-    with left_col:
-        render_card(
-            title="Confidence Level",
-            value=confidence_level,
-            icon="📈",
-            color="#22C55E",
+        st.markdown(
+            f"""
+**Confidence Level**
+
+🟢 **{confidence_level}**
+
+---
+
+**Runner-up Prediction**
+
+{CLASS_METADATA[runner_up_class]["icon"]} **{runner_up_class}**
+({runner_up_probability:.1%})
+
+---
+
+The model predicts **{result.predicted_class}**
+with **{result.confidence:.1%}** confidence.
+
+The next most likely stage is
+**{runner_up_class} ({runner_up_probability:.1%})**.
+
+**Interpretation**
+
+{explanation}
+"""
         )
-
-    with right_col:
-        render_card(
-            title="Runner-up Prediction",
-            value=f"{runner_up_class} ({runner_up_probability:.2%})",
-            icon=CLASS_METADATA[runner_up_class]["icon"],
-            color="#F59E0B",
-        )
-
-    st.info(
-        (
-            f"The model predicts **{result.predicted_class}** "
-            f"with **{result.confidence:.2%}** confidence.\n\n"
-            f"The second most likely class is "
-            f"**{runner_up_class}** "
-            f"with **{runner_up_probability:.2%}** probability.\n\n"
-            f"**Interpretation:** {explanation}"
-        )
-    )
-
 
 def get_confidence_interpretation(
     confidence: float,
@@ -634,147 +712,135 @@ def render_prediction_metadata(
     result: PredictionResult,
 ) -> None:
     """
-    Render prediction metadata cards.
+    Render compact prediction metadata.
     """
 
     st.divider()
 
-    st.subheader("📊 Prediction Metadata")
+    st.subheader("Prediction Metadata")
 
-    top_left, top_right = st.columns(2)
+    with st.container(border=True):
 
-    with top_left:
-        render_card(
-            title="Architecture",
-            value=PROJECT.model_name,
-            color="#2563EB",
-            icon="🧠",
-        )
+        metadata = [
+            ("🧠", "Architecture", PROJECT.model_name),
+            ("🎯", "Confidence", f"{result.confidence:.1%}"),
+            ("🖼️", "Input Size", f"{MODEL.image_size} × {MODEL.image_size}"),
+            ("⚡", "Inference", f"{round(result.inference_time_ms)} ms"),
+        ]
 
-    with top_right:
-        render_card(
-            title="Top Prediction",
-            value=f"{result.confidence:.2%}",
-            color="#16A34A",
-            icon="🎯",
-        )
+        for icon, title, value in metadata:
 
-    bottom_left, bottom_right = st.columns(2)
+            left_col, right_col = st.columns([1.5, 2])
 
-    with bottom_left:
-        render_card(
-            title="Input Resolution",
-            value=f"{MODEL.image_size} × {MODEL.image_size}",
-            color="#F59E0B",
-            icon="🖼️",
-        )
+            with left_col:
+                st.caption(f"{icon} {title}")
 
-    with bottom_right:
-        render_card(
-            title="Prediction Time",
-            value=f"{round(result.inference_time_ms)} ms",
-            color="#8B5CF6",
-            icon="⚡",
-        )
-
+            with right_col:
+                st.markdown(
+                    f"**{value}**"
+                )
 
 def render_banana_lifecycle(
     result: PredictionResult,
 ) -> None:
     """
-    Render a horizontal banana ripeness lifecycle visualization.
-
-    Args:
-        result: Prediction result returned by the inference layer.
+    Render a compact banana ripeness lifecycle.
     """
-    st.subheader("🍌 Banana Lifecycle")
+
+    st.divider()
+
+    st.subheader("Banana Lifecycle")
 
     stages = sorted(
         CLASS_METADATA.items(),
         key=lambda item: item[1]["order"],
     )
 
-    current_order = CLASS_METADATA[result.predicted_class]["order"]
+    current_order = CLASS_METADATA[
+        result.predicted_class
+    ]["order"]
 
-    layout = [1]
-    for _ in range(len(stages) - 1):
-        layout.extend([0.25, 1])
-
-    cols = st.columns(layout)
-
-    col_index = 0
+    columns = st.columns(len(stages))
 
     for index, (stage_name, metadata) in enumerate(stages):
+
         stage_order = metadata["order"]
 
         if stage_order < current_order:
-            status_icon = "✅"
-            status_text = "Completed"
+            indicator = "✅"
+            color = "#16A34A"
 
         elif stage_order == current_order:
-            status_icon = "🟢"
-            status_text = "Current"
+            indicator = "🟡"
+            color = "#F59E0B"
 
         else:
-            status_icon = "⚪"
-            status_text = "Upcoming"
+            indicator = "⚪"
+            color = "#9CA3AF"
 
-        with cols[col_index]:
+        with columns[index]:
+
             st.markdown(
                 f"""
-<div style="text-align:center">
+<div style="text-align:center;">
 
-<h1>{metadata["icon"]}</h1>
+<div style="
+font-size:28px;
+margin-bottom:4px;
+">
+{metadata["icon"]}
+</div>
 
-<b>{stage_name}</b>
+<div style="
+font-weight:600;
+font-size:15px;
+color:{color};
+">
+{stage_name}
+</div>
 
-<br>
-
-{status_icon} {status_text}
+<div style="
+font-size:13px;
+color:#6B7280;
+margin-top:2px;
+">
+{indicator}
+</div>
 
 </div>
 """,
                 unsafe_allow_html=True,
             )
 
-        col_index += 1
-
-        if index < len(stages) - 1:
-            with cols[col_index]:
-                st.markdown(
-                    """
-<div style="text-align:center;
-font-size:34px;
-padding-top:55px;">
-➡️
-</div>
-""",
-                    unsafe_allow_html=True,
-                )
-
-            col_index += 1
-
-
 def render_model_performance() -> None:
     """
-    Render the model performance dashboard.
+    Render a compact model performance panel.
     """
+
     st.divider()
-    st.subheader("📊 Model Performance")
 
-    metrics = list(MODEL_METADATA.values())
+    st.subheader("Model Performance")
 
-    columns = st.columns(3)
+    with st.container(border=True):
 
-    for index, metric in enumerate(metrics):
-        with columns[index % 3]:
-            render_card(
-                title=metric["title"],
-                value=metric["value"],
-                icon=metric["icon"],
-                color=metric["color"],
-            )
+        metrics = [
+            ("🧠", "Architecture", "MobileNetV2"),
+            ("🎯", "Test Accuracy", "72.5%"),
+            ("⚙️", "Framework", "TensorFlow 2.20"),
+            ("🖼️", "Input Size", "224 × 224"),
+            ("🍌", "Output Classes", "4"),
+            ("💻", "Inference Device", "CPU"),
+        ]
 
+        for icon, title, value in metrics:
+
+            left, right = st.columns([1.6, 2])
+
+            with left:
+                st.caption(f"{icon} {title}")
+
+            with right:
+                st.markdown(f"**{value}**")
 
 def render_prediction(result: PredictionResult) -> None:
     """Render the complete prediction dashboard."""
@@ -830,46 +896,66 @@ def render_sidebar() -> None:
     """Render the application sidebar."""
 
     with st.sidebar:
-        st.title(f"🍌 {PROJECT.name}")
-        st.caption(PROJECT.description)
 
-        st.divider()
+        st.markdown("## 🍌 Banalyzer")
+        st.caption("AI Banana Ripeness Predictor")
 
-        st.subheader("Model")
-
-        st.write(f"**Architecture:** {PROJECT.model_name}")
-        st.write(f"**Version:** {PROJECT.version}")
-
-        st.metric(
-            label="Test Accuracy",
-            value=f"{PROJECT.model_accuracy:.1f}%",
+        st.markdown(
+            """
+            <p style="color:#9CA3AF; font-size:13px; margin-top:-8px;">
+            Predict banana ripeness from a single image using AI.
+            </p>
+            """,
+            unsafe_allow_html=True,
         )
 
         st.divider()
 
-        st.subheader("Classes")
-
-        for class_name in CLASS_NAMES:
-            st.write(f"• {class_name}")
-
-        st.divider()
-
-        st.subheader("Input")
-
-        st.write(
-            f"Image Size: {MODEL.image_size} × {MODEL.image_size}"
+        st.markdown(
+            """
+            <p style="color:#white; font-size:18px; margin-top:10px; font-weight:bold;">
+            Model Overview
+            </p>
+            """,    
+            unsafe_allow_html=True,
         )
 
+        st.markdown("##### **->  Model** : MobileNetV2")
+
+        st.markdown("##### **->  Accuracy** :" f" {PROJECT.model_accuracy:.1f}%")
+
+        st.markdown("##### **->  Version** :" f" v{PROJECT.version}")
+
+        st.markdown("##### **->  Input** :"f" {MODEL.image_size} × {MODEL.image_size}")
+
+        st.markdown("##### **->  Classes** :")
+        st.markdown(
+            """
+            <p style="font-size:14px; margin-top:-8px; font-weight:500; color:#9CA3AF;">
+            Unripe, Ripe, Overripe, Rotten
+            </p>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        
 
 def render_header() -> None:
     """Render the application header."""
 
     st.title("🍌 Banalyzer")
 
+    st.subheader(
+        """
+        An **AI Banana Ripeness Predictor**
+        """
+    )
     st.markdown(
         """
-        Predict the ripeness stage of a banana using a
-        **MobileNetV2 Transfer Learning** model.
+        Analyze the ripeness of a banana from a single image using
+        a **Deep Learning Model** trained on four ripeness stages.
+
+        ──────────────────────────────────────────
         """
     )
 
@@ -897,6 +983,10 @@ def main() -> None:
     configure_page()
 
     load_css()
+
+
+    # Warm up cached AI models.
+    get_validator()
     # Warm up the cached model during application startup.
     get_model()
 
@@ -906,13 +996,13 @@ def main() -> None:
 
     left_col, right_col = st.columns(
         [1.2, 1],
-        gap="large",
+        gap="small",
     )
 
     with left_col:
         with st.container(border=True):
 
-            st.subheader("📷 Uploaded Image")
+            st.subheader("📷 Upload Banana Image")
 
             uploaded_file = render_uploader()
 
@@ -935,7 +1025,56 @@ def main() -> None:
                         "Prediction requested for '%s'.",
                         uploaded_file.name,
                     )
-                    result = run_prediction(uploaded_file)
+
+                    validator = get_validator()
+
+                    uploaded_image = Image.open(uploaded_file)
+
+                    validation = validate_image(                                    
+                        validator,
+                        uploaded_image,
+                    )
+
+                    if not validation.is_valid:
+
+                        confidence = validation.confidence * 100
+
+                        st.error("⚠ No Banana Detected")
+
+                        with st.container(border=True):
+
+                            st.markdown(
+                                "The uploaded image doesn't appear to contain a banana."
+                            )
+
+                            st.divider()
+
+                            st.markdown("### 🔍 Detected Object")
+
+                            st.info(
+                                f"**{validation.label.title()}** ({confidence:.1f}%)"
+                            )
+
+                            st.divider()
+
+                            st.markdown("### 📋 Please upload")
+
+                            st.markdown(
+                                """
+                    - 🍌 A banana
+                    - 📷 A clear image
+                    - ☀️ Good lighting
+                    - 🖼️ JPG / PNG
+                    """
+                            )
+
+                            st.caption(
+                                "Banalyzer analyzes banana ripeness only."
+                            )
+
+                    else:
+
+                        result = run_prediction(uploaded_file)
 
             if result is not None:
                 render_prediction(result)
