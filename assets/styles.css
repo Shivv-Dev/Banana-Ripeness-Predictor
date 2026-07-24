@@ -146,22 +146,12 @@ h3 {
     margin-top: -0.2rem !important;
 }
 
-div[data-testid="stMarkdownContainer"] p {
-    font-size: 16px !important;
-    color: #9CA3AF !important;
-    max-width: 900px;
-    line-height: 1.4;
-    margin-top: -0.3rem !important;
-}
 
 hr {
     margin-top: 1rem !important;
     margin-bottom: 1rem !important;
 }
 
-div[data-testid="stVerticalBlock"] {
-    gap: 0.5rem;
-}
 
 .stButton > button {
     padding: 0.45rem 1rem;
@@ -178,6 +168,25 @@ img {
     margin-bottom: 0.4rem;
 }
 
-div[data-testid="stContainer"] {
-    margin-bottom: 0.5rem;
+.sidebar-description{
+    font-size:16px;
+    color:#9CA3AF;
+    line-height:1.6;
+}
+
+.sidebar-heading{
+    font-size:22px;
+    font-weight:700;
+    color:#FFFFFF;
+}
+
+.hero-description{
+    font-size:18px;
+    color:#9CA3AF;
+    line-height:1.6;
+}
+
+/* Remove top padding from the main page */
+.block-container {
+    padding-top: 3rem !important;
 }

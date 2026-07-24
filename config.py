@@ -64,7 +64,7 @@ class ProjectMetadata:
 PROJECT = ProjectMetadata(
     name="Banalyzer",
     description="Banana Ripeness Prediction using Deep Learning",
-    version="1.0.0",
+    version="1.1.0",
     author="Shivv",
     model_name="MobileNetV2",
     model_accuracy=72.5,

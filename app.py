@@ -397,17 +397,17 @@ def render_validation_error(
 
         st.divider()
 
-        st.markdown("### 📋 Please upload")
+        st.markdown("### ⚠️ Please upload:")
 
         st.markdown(
             """
-✅ A banana
+A banana
 
-✅ Good lighting
+Good lighting
 
-✅ Single fruit
+Single fruit
 
-✅ JPG / PNG image
+JPG / PNG image
 """
         )
 
@@ -902,7 +902,7 @@ def render_sidebar() -> None:
 
         st.markdown(
             """
-            <p style="color:#9CA3AF; font-size:13px; margin-top:-8px;">
+            <p style="color:#9CA3AF; font-size:14px; margin-top:-8px;">
             Predict banana ripeness from a single image using AI.
             </p>
             """,
@@ -913,10 +913,10 @@ def render_sidebar() -> None:
 
         st.markdown(
             """
-            <p style="color:#white; font-size:18px; margin-top:10px; font-weight:bold;">
-            Model Overview
+            <p style="color:#white; font-size:18px; margin-top:-8px; font-weight:bold">
+                Model Overview
             </p>
-            """,    
+            """,
             unsafe_allow_html=True,
         )
 
@@ -952,11 +952,11 @@ def render_header() -> None:
     )
     st.markdown(
         """
-        Analyze the ripeness of a banana from a single image using
-        a **Deep Learning Model** trained on four ripeness stages.
-
-        ──────────────────────────────────────────
-        """
+        <p class="hero-description">
+            Analyze the ripeness of a banana from a single image using a Deep Learning Model trained on four ripeness stages.
+        </p>
+        """,
+        unsafe_allow_html=True,
     )
 
     st.divider()
@@ -1057,14 +1057,14 @@ def main() -> None:
 
                             st.divider()
 
-                            st.markdown("### 📋 Please upload")
+                            st.markdown("### ⚠️ Please upload:")
 
                             st.markdown(
                                 """
-                    - 🍌 A banana
-                    - 📷 A clear image
-                    - ☀️ Good lighting
-                    - 🖼️ JPG / PNG
+                    - A banana
+                    - A clear image
+                    - Good lighting
+                    - JPG / PNG
                     """
                             )
 
