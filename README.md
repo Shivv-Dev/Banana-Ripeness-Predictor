@@ -35,13 +35,13 @@ Beyond model performance, the project emphasizes modular architecture, centraliz
 ![Streamlit](https://img.shields.io/badge/Streamlit-App-FF4B4B?style=for-the-badge&logo=streamlit)
 ![MobileNetV2](https://img.shields.io/badge/Model-MobileNetV2-success?style=for-the-badge)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-[![Live Demo](https://img.shields.io/badge/Live-Demo-Online-success?style=for-the-badge&logo=streamlit)](https://banana-ripeness-predictor.streamlit.app) 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://banana-ripeness-predictor.streamlit.app)
 ![Version](https://img.shields.io/badge/Version-v1.1.0-blue?style=for-the-badge)
-![GitHub stars](https://img.shields.io/github/stars/Shivv-Dev/Banalyzer?style=for-the-badge)
-![GitHub last commit](https://img.shields.io/github/last-commit/Shivv-Dev/Banalyzer?style=for-the-badge)  
+![GitHub stars](https://img.shields.io/github/stars/Shivv-Dev/Banana-Ripeness-Predictor?style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/Shivv-Dev/Banana-Ripeness-Predictor?style=for-the-badge)  
 
 
-## 📊 Project Snapshot
+## Project Snapshot
 
 | Property | Value |
 |----------|-------|
@@ -61,7 +61,7 @@ Beyond model performance, the project emphasizes modular architecture, centraliz
 
 Try Banalyzer directly in your browser. No installation or setup required.
 
-🚀 **Launch Banalyzer**
+**Launch Banalyzer**
 
 https://banana-ripeness-predictor.streamlit.app
 
