@@ -408,7 +408,7 @@ Current limitations include:
 - Additional training data could further improve model generalization.
 
 
-# 📦 Dataset
+# Dataset
 
 Banalyzer is trained on a publicly available banana ripeness image dataset containing four ripeness categories:
 
