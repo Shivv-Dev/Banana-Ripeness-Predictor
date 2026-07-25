@@ -1,14 +1,32 @@
-# Banalyzer
+<h1 align="center">🍌 Banalyzer</h1>
 
-## AI-Powered Banana Ripeness Classification
+<p align="center">
+  <strong>AI-Powered Banana Ripeness Classification</strong>
+</p>
 
-> Production-inspired Deep Learning application for banana ripeness classification using TensorFlow, MobileNetV2, and Streamlit.
+<p align="center">
+Production-inspired Deep Learning application built with TensorFlow, MobileNetV2, and Streamlit.
+</p>
 
-Banalyzer is a computer vision application that classifies banana ripeness from a single image using a MobileNetV2-based deep learning model. The application predicts one of four ripeness stages: Unripe, Ripe, Overripe, or Rotten.
+<p align="center">
+Computer Vision • Transfer Learning • Streamlit • TensorFlow • MobileNetV2
+</p>
 
-The project was developed to demonstrate an end-to-end machine learning workflow, covering dataset preparation, model training, evaluation, inference, and deployment through an interactive Streamlit application.
+---
 
-Beyond model development, Banalyzer emphasizes software engineering practices such as modular architecture, centralized configuration, structured logging, reusable inference pipelines, and maintainable project organization, reflecting the design principles commonly used in production-oriented AI applications.
+Banalyzer is a production-inspired computer vision application that classifies banana ripeness from a single image using a MobileNetV2-based deep learning model.
+
+The application predicts one of four ripeness stages:
+
+- 🍃 Unripe
+- 🍌 Ripe
+- 🟤 Overripe
+- ⚫ Rotten
+
+Developed as an end-to-end machine learning project, Banalyzer demonstrates the complete AI workflow, including data preparation, transfer learning, model evaluation, inference, deployment, and software engineering best practices.
+
+Beyond model performance, the project emphasizes modular architecture, centralized configuration, structured logging, reusable inference pipelines, and maintainable code organization, reflecting practices commonly used in production-oriented AI systems.
+
 
 ---
 
@@ -19,31 +37,45 @@ Beyond model development, Banalyzer emphasizes software engineering practices su
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 [![Live Demo](https://img.shields.io/badge/Live-Demo-Online-success?style=for-the-badge&logo=streamlit)](https://banana-ripeness-predictor.streamlit.app) 
 ![Version](https://img.shields.io/badge/Version-v1.1.0-blue?style=for-the-badge)
+![GitHub stars](https://img.shields.io/github/stars/Shivv-Dev/Banalyzer?style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/Shivv-Dev/Banalyzer?style=for-the-badge)  
 
-## Project Snapshot
+
+## 📊 Project Snapshot
 
 | Property | Value |
 |----------|-------|
-| Version | v1.1.0 |
-| Language | Python 3.13 |
-| Framework | TensorFlow 2.20 |
-| Model | MobileNetV2 |
-| Classes | 4 |
-| Accuracy | 72.5% |
-| Deployment | Streamlit |
-| License | MIT |
-
-
+| **Version** | v1.1.0 |
+| **Project Type** | Deep Learning Image Classification |
+| **Domain** | Computer Vision |
+| **Framework** | TensorFlow 2.20 |
+| **Model** | MobileNetV2 (Transfer Learning) |
+| **Programming Language** | Python 3.13 |
+| **Classes** | 4 (Unripe, Ripe, Overripe, Rotten) |
+| **Test Accuracy** | 72.5% |
+| **Deployment** | Streamlit Cloud |
+| **License** | MIT |
 
 
 ## 🌐 Live Demo
 
-Experience Banalyzer directly in your browser without any installation.
+Try Banalyzer directly in your browser. No installation or setup required.
 
-**🔗 Live Application:**  
-**🚀 Live Demo:** [Open Banalyzer](https://banana-ripeness-predictor.streamlit.app)
+🚀 **Launch Banalyzer**
+
+https://banana-ripeness-predictor.streamlit.app
 
 > Upload a banana image and receive a ripeness prediction powered by a MobileNetV2 deep learning model.
+
+### What you can explore
+
+- Upload banana images
+- AI-powered ripeness classification
+- Confidence score and probability distribution
+- Ripeness insights and recommendations
+- Interactive Streamlit dashboard
+
+The application is publicly deployed on Streamlit Cloud and can be accessed from any modern web browser.
 
 
 ## Table of Contents
@@ -72,74 +104,99 @@ Experience Banalyzer directly in your browser without any installation.
 
 # Overview
 
-Banalyzer is a deep learning application for banana ripeness classification built using TensorFlow and MobileNetV2.
+Banalyzer is a production-inspired deep learning application that classifies banana ripeness from a single image using a MobileNetV2 model trained with Transfer Learning.
 
-The model leverages **Transfer Learning** with **MobileNetV2**, enabling efficient image classification while maintaining a lightweight architecture suitable for real-world deployment.
+Built with TensorFlow and deployed through Streamlit, the project demonstrates an end-to-end computer vision workflow, from dataset preparation and model training to evaluation, inference, and interactive deployment.
 
-The application is designed with software engineering best practices in mind, including modular architecture, reusable components, centralized configuration, structured logging, and a clean separation between training, evaluation, inference, and presentation layers.
+Beyond image classification, Banalyzer focuses on software engineering practices that improve maintainability and scalability. The codebase follows a modular architecture with centralized configuration, reusable inference pipelines, structured logging, and a clear separation of responsibilities across training, evaluation, prediction, and presentation layers.
 
-The repository demonstrates how machine learning and software engineering practices can be combined to build a maintainable and deployable AI application.
+The repository showcases how machine learning and software engineering can be combined to build an AI application that is both technically robust and ready to be shared, maintained, and extended.
+
 
 # Why Banalyzer?
 
-Many machine learning projects stop after training a model. Banalyzer was built to demonstrate the complete lifecycle of a production-inspired AI application.
+Many machine learning projects end once a model achieves satisfactory accuracy. Banalyzer was built to demonstrate that a successful AI project extends far beyond model training.
 
-The project combines computer vision, transfer learning, software engineering, and user-centric design into a maintainable and deployable solution. Rather than focusing solely on model accuracy, it emphasizes clean architecture, reusable components, centralized configuration, structured documentation, and an intuitive user experience.
+The project showcases the complete lifecycle of a production-inspired computer vision application, covering data preparation, transfer learning, model evaluation, inference, deployment, and user interaction through an intuitive web interface.
 
-Banalyzer reflects the engineering practices used to transform a trained model into software that can be shared, maintained, and extended.
+Rather than focusing solely on predictive performance, Banalyzer emphasizes software engineering principles such as modular architecture, reusable components, centralized configuration, structured logging, comprehensive documentation, and maintainable code organization.
+
+The result is a repository that demonstrates not only how to build a deep learning model, but also how to transform that model into a structured, deployable, and extensible software application.
 
 
 # Features
 
--  Upload banana images (JPG / PNG)
--  MobileNetV2-based image classification
--  Predicts four ripeness stages:
-  - Unripe
-  - Ripe
-  - Overripe
-  - Rotten
--  Confidence gauge
--  Probability distribution
--  Prediction explanation
--  Ripeness insights
--  Prediction metadata
--  Interactive Streamlit dashboard
--  Production-ready project structure
+### AI Capabilities
+
+- MobileNetV2-based image classification using Transfer Learning
+- Predicts four ripeness stages:
+  - 🟢 Unripe
+  - 🟡 Ripe
+  - 🟤 Overripe
+  - ⚫ Rotten
+- Confidence score for every prediction
+- Probability distribution across all classes
+- Human-readable prediction explanation
+
+---
+
+### Application Features
+
+- Upload banana images (JPG / PNG)
+- Interactive Streamlit dashboard
+- Ripeness insights and recommendations
+- Prediction metadata and model information
+
+---
+
+### Engineering Highlights
+
+- Modular project architecture
+- Centralized configuration
+- Reusable inference pipeline
+- Image validation before inference
+- Production-inspired project organization
 
 
 # Engineering Highlights
 
-- Modular software architecture
-- MobileNetV2 transfer learning pipeline
-- Image validation before inference
-- Reusable prediction pipeline
-- Centralized configuration management
-- Interactive Streamlit dashboard
+- Modular software architecture with clear separation of concerns
+- MobileNetV2 Transfer Learning pipeline for efficient image classification
+- Image validation before inference to improve prediction reliability
+- Reusable prediction pipeline shared across the application
+- Centralized configuration management for maintainability
+- Structured logging for easier debugging and monitoring
+- Interactive Streamlit dashboard with a clean user interface
 - Comprehensive technical documentation
 - Production-inspired project organization
 
 
 # Design Decisions
 
-Banalyzer was designed as more than a machine learning experiment. This project was designed to an application that follows software engineering principles while demonstrating a complete end-to-end AI workflow.
+Banalyzer was designed as more than a machine learning experiment. It was developed as a structured application that follows software engineering principles while demonstrating a complete end-to-end AI workflow.
+
 
 ### MobileNetV2
 
-MobileNetV2 was selected for its balance of inference speed, computational efficiency, and classification performance, making it well suited for lightweight image classification tasks. Its lightweight design makes it suitable for real-world deployment without requiring high-end hardware.
+MobileNetV2 was selected for its strong balance between classification performance, inference speed, and computational efficiency. Its lightweight architecture enables fast predictions while maintaining competitive accuracy, making it well suited for interactive web applications and deployment on resource-constrained environments.
+
 
 ### Transfer Learning
 
-Training a deep neural network from scratch requires a significantly larger dataset and computational resources. Transfer Learning enables the model to leverage rich visual features learned from ImageNet while adapting efficiently to banana ripeness classification.
+Training a deep neural network from scratch requires a large labeled dataset and significant computational resources. By leveraging Transfer Learning, Banalyzer builds upon visual features learned from ImageNet, enabling faster convergence, improved generalization, and efficient adaptation to the banana ripeness classification task.
+
 
 ### Streamlit
 
-Streamlit enables rapid deployment of machine learning applications through an intuitive web interface. It allows users to interact with the trained model without requiring knowledge of Python or machine learning workflows.
+Streamlit was chosen to provide a lightweight and interactive interface for model inference. It enables rapid deployment of machine learning applications, allowing users to upload images, generate predictions, and explore results without requiring knowledge of Python or machine learning workflows.
+
 
 ### Modular Architecture
 
-The project separates responsibilities into dedicated modules for configuration, training, prediction, evaluation, and presentation. This improves maintainability, readability, scalability, and makes future enhancements easier to implement.
+The project separates responsibilities into dedicated modules for configuration, training, evaluation, prediction, validation, and presentation. This separation of concerns improves readability, maintainability, testability, and scalability while making future enhancements easier to implement.
 
-## Production-Oriented Design
+
+## Production-Inspired Engineering Practices
 
 The repository follows several software engineering best practices, including:
 
@@ -152,49 +209,50 @@ The repository follows several software engineering best practices, including:
 - Production-style folder organization
 
 
-# Technology Stack
+##  Technology Stack
 
 | Category | Technology |
 |----------|------------|
 | Programming Language | Python 3.13 |
-| Deep Learning | TensorFlow 2.20 |
-| Model | MobileNetV2 |
+| Deep Learning Framework | TensorFlow 2.20 |
+| Model Architecture | MobileNetV2 (Transfer Learning) |
 | Computer Vision | OpenCV, Pillow |
 | Data Processing | NumPy, Pandas |
-| Visualization | Matplotlib |
+| Data Visualization | Matplotlib |
 | Web Framework | Streamlit |
+| Machine Learning Utilities | Scikit-learn |
 | Version Control | Git & GitHub |
 | Model Format | `.keras` |
+| Development Environment | VS Code |
 
 
 # Project Architecture
 
 ```text
-                   User Upload
-                        │
-                        ▼
-             Image Validation
-                        │
-                        ▼
-            Image Preprocessing
-                        │
-                        ▼
-        MobileNetV2 Deep Learning Model
-                        │
-                        ▼
-              Prediction Engine
-                        │
-                        ▼
-          Confidence Calculation
-                        │
-                        ▼
-        Probability Distribution
-                        │
-                        ▼
-      Ripeness Insights & Recommendation
-                        │
-                        ▼
-          Interactive Streamlit UI
+                        User Upload
+                             │
+                             ▼
+                 Image Validation Layer
+                             │
+                             ▼
+                Image Preprocessing Layer
+                             │
+                             ▼
+          MobileNetV2 (Transfer Learning)
+                             │
+                             ▼
+                  Prediction Pipeline
+                             │
+             ┌───────────────┼───────────────┐
+             ▼               ▼               ▼
+      Confidence Score  Probability      Prediction
+                         Distribution     Explanation
+             └───────────────┼───────────────┘
+                             ▼
+              Ripeness Insights & Metadata
+                             │
+                             ▼
+              Interactive Streamlit Dashboard
 ```
 
 
@@ -203,44 +261,45 @@ The repository follows several software engineering best practices, including:
 ```text
 Banalyzer/
 │
-├── assets/                 # Images and UI assets
-├── data/                   # Dataset (download separately, see Dataset section)
-├── docs/                   # Project documentation
-├── models/                 # Trained model and class mapping
-├── outputs/                # Evaluation artifacts (generated locally)
-├── utils/                  # Reusable utility modules
+├── assets/                     # Images, screenshots, and UI assets
+├── data/                       # Dataset (download separately)
+├── docs/                       # Project documentation
+├── models/                     # Trained model and class mapping
+├── outputs/                    # Evaluation results and generated artifacts
+├── utils/                      # Utility and helper modules
 │
-├── app.py                  # Streamlit application
-├── train.py                # Model training pipeline
-├── evaluate.py             # Model evaluation
-├── predict.py              # Prediction engine
-├── config.py               # Centralized configuration
+├── app.py                      # Streamlit application entry point
+├── config.py                   # Centralized project configuration
+├── predict.py                  # Reusable prediction pipeline
+├── train.py                    # Model training pipeline
+├── evaluate.py                 # Model evaluation pipeline
 │
-├── requirements.txt
-├── LICENSE
-└── README.md
+├── requirements.txt            # Project dependencies
+├── LICENSE                     # MIT License
+└── README.md                   # Project documentation
 ```
+
 
 # Project Documentation
 
-Additional technical documentation is available in the `docs/` directory.
+In addition to this README, Banalyzer includes dedicated technical documentation covering the project's architecture, dataset preparation, model development, deployment, testing, and known limitations.
 
-| Document | Description |
-|----------|-------------|
-| architecture.md | Project architecture and design decisions |
-| dataset.md | Dataset organization and preprocessing |
-| model.md | Model training methodology and configuration |
-| deployment.md | Deployment instructions |
-| testing/manual_test_matrix.md | Manual testing scenarios |
-| testing/validation_summary.md | Validation results |
-| testing/known_limitations.md | Current limitations and future improvements |
+| Document | Purpose |
+|----------|---------|
+| `architecture.md` | System architecture and key design decisions |
+| `dataset.md` | Dataset organization, preprocessing, and augmentation |
+| `model.md` | Training methodology, configuration, and model details |
+| `deployment.md` | Local deployment and application setup |
+| `testing/manual_test_matrix.md` | Manual testing scenarios and expected outcomes |
+| `testing/validation_summary.md` | Validation process and testing results |
+| `testing/known_limitations.md` | Current limitations and planned improvements |
 
 
-# Application Preview
+# Application Walkthrough
 
 ## Home Dashboard
 
-The application starts with a clean dashboard that presents the project overview, supported classes, model information, and image upload interface.
+The home dashboard introduces Banalyzer, presents key project information, and provides the entry point for image upload and prediction.
 
 <p align="center">
   <img src="assets/screenshots/01-home.png" width="100%">
@@ -250,7 +309,7 @@ The application starts with a clean dashboard that presents the project overview
 
 ## Upload & Prediction
 
-Users can upload a banana image and run inference directly from the web interface.
+Users can upload a banana image in JPG or PNG format and initiate inference through the interactive Streamlit interface.
 
 <p align="center">
   <img src="assets/screenshots/02-upload.png" width="100%">
@@ -260,7 +319,7 @@ Users can upload a banana image and run inference directly from the web interfac
 
 ## Prediction Result
 
-The prediction panel displays the detected ripeness stage together with the confidence score.
+The prediction panel presents the detected ripeness stage together with the model's confidence score and inference summary.
 
 <p align="center">
   <img src="assets/screenshots/03-prediction.png" width="100%">
@@ -270,7 +329,7 @@ The prediction panel displays the detected ripeness stage together with the conf
 
 ## Confidence Analysis
 
-Probability distribution and confidence visualization help users understand how certain the model is.
+Confidence analysis visualizes prediction certainty across all ripeness classes, helping users better understand the model's decision.
 
 <p align="center">
   <img src="assets/screenshots/04-confidence.png" width="100%">
@@ -280,7 +339,7 @@ Probability distribution and confidence visualization help users understand how 
 
 ## Ripeness Insights
 
-Beyond classification, Banalyzer provides practical recommendations based on the predicted ripeness stage.
+Beyond classification, Banalyzer provides contextual ripeness insights and practical recommendations based on the predicted stage.
 
 <p align="center">
   <img src="assets/screenshots/05-insights.png" width="100%">
@@ -290,7 +349,7 @@ Beyond classification, Banalyzer provides practical recommendations based on the
 
 ## Model Performance Dashboard
 
-Displays inference metadata together with model specifications.
+The dashboard summarizes inference metadata together with key model information, providing additional transparency into the prediction process.
 
 <p align="center">
   <img src="assets/screenshots/06-performance.png" width="100%">
@@ -301,55 +360,104 @@ Displays inference metadata together with model specifications.
 
 ## Test Results
 
-  Metric | Value 
-------------------
-  Model - MobileNetV2 
-  Test Accuracy - **72.5%** 
-  Number of Classes - **4** 
-  Input Resolution - **224 × 224** 
-  Framework - TensorFlow 2.20
-  Deployment - Streamlit
+| Metric | Value |
+|---------|-------|
+| Model Architecture | MobileNetV2 |
+| Learning Strategy | Transfer Learning |
+| Test Accuracy | **72.5%** |
+| Number of Classes | **4** |
+| Input Resolution | **224 × 224** |
+| Framework | TensorFlow 2.20 |
+| Deployment | Streamlit Cloud |
 
 ---
 
 ## Training History
 
-The following graph illustrates the evolution of training and validation accuracy/loss throughout the training process.
+The training history illustrates the progression of training and validation accuracy and loss throughout the learning process, providing insight into model convergence and generalization.
 
 <p align="center">
-  <img src="assets/screenshots/training-history.png" width="100%">
+  <img src="assets\screenshots\training_history.png" width="100%">
 </p>
 
 ---
 
 ## Confusion Matrix
 
-The confusion matrix summarizes the model's performance across all four ripeness classes and highlights common misclassifications.
+The confusion matrix provides a class-wise view of model performance, highlighting correctly classified samples as well as common areas of confusion between visually similar ripeness stages.
 
 <p align="center">
-  <img src="assets/screenshots/confusion-matrix.png" width="70%">
+  <img src="assets/screenshots/confusion_matrix.png" width="70%">
 </p>
 
 
 ### Key Observations
 
-- The model performs best on the **Ripe** and **Rotten** classes.
-- Some confusion exists between **Unripe** and **Ripe**, reflecting the visual similarity during transitional ripeness stages.
-- The confusion matrix indicates that the model captures meaningful visual features while still leaving room for improvement through additional data, augmentation, or fine-tuning.
+- The model performs strongest on the **Ripe** and **Rotten** classes.
+- Most misclassifications occur between **Unripe** and **Ripe**, reflecting the gradual visual transition between adjacent ripeness stages.
+- Overall, the confusion matrix demonstrates that the model captures meaningful visual patterns while also highlighting opportunities for improvement through additional data, augmentation, or further fine-tuning.
 
+
+## Model Limitations
+
+Current limitations include:
+
+- Performance depends on image quality and lighting conditions.
+- Predictions are optimized for single-banana images.
+- Transitional ripeness stages remain the most challenging to classify.
+- Additional training data could further improve model generalization.
+
+
+# 📦 Dataset
+
+Banalyzer is trained on a publicly available banana ripeness image dataset containing four ripeness categories:
+
+- 🍃 Unripe
+- 🍌 Ripe
+- 🟤 Overripe
+- ⚫ Rotten
+
+The dataset is **not included** in this repository because of its size and licensing considerations.
+
+To reproduce the training pipeline:
+
+1. Download the dataset from the source below.
+2. Extract it into the `data/` directory.
+3. Follow the training instructions provided in the documentation.
+
+> **Dataset Source:** Kaggle Banana Ripeness Dataset
+
+The repository structure assumes the dataset is organized under:
+
+```text
+data/
+├── train/
+├── validation/
+└── test/
+```
 
 # Installation
 
 Follow the steps below to run Banalyzer locally.
 
-## 1. Clone the Repository
+## 1. Prerequisites
+
+Before running Banalyzer, ensure you have:
+
+- Python 3.13 or later
+- Git
+- pip
+
+## 2. Clone the Repository
+
+Clone the project locally:
 
 ```bash
 git clone https://github.com/Shivv-Dev/Banalyzer.git
 cd Banalyzer
 ```
 
-## 2. Create a Virtual Environment
+## 3. Create a Virtual Environment
 
 ### Windows
 
@@ -365,33 +473,35 @@ python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-## 3. Install Dependencies
+## 4. Install Dependencies
+
+Install all required Python dependencies:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## 4. Launch the Application
+## 5. Run the Application
 
 ```bash
 streamlit run app.py
 ```
 
-Open your browser and navigate to:
+If the browser does not open automatically, navigate to:
 
 ```
 http://localhost:8501
 ```
+
 
 # Usage
 
 Using Banalyzer is straightforward:
 
 1. Launch the Streamlit application.
-2. Upload a banana image in **JPG** or **PNG** format.
+2. Upload a banana image in JPG or PNG format.
 3. Click **Predict Ripeness**.
-4. Review the prediction dashboard.
-
+4. Review the generated prediction dashboard.
 
 The application provides:
 
@@ -404,25 +514,37 @@ The application provides:
 - Model performance summary
 
 
-# Future Improvements 
+# Future Improvements
 
-Planned enhancements include:
+### Model Improvements
 
 - [ ] Grad-CAM visualization for explainable AI
+- [ ] Performance benchmarking across model architectures
+- [ ] Automated model retraining pipeline
+- [ ] Model versioning
+
+---
+
+### 🌐 Application Features
+
 - [ ] Batch image prediction
 - [ ] Real-time webcam inference
 - [ ] REST API using FastAPI
+
+---
+
+### DevOps & Deployment
+
 - [ ] Docker containerization
 - [ ] CI/CD with GitHub Actions
-- [ ] Automated model retraining pipeline
 - [ ] Cloud deployment
-- [ ] Model versioning
-- [ ] Performance benchmarking across architectures
 
 
 # Acknowledgements
 
-This project builds upon several excellent open-source technologies:
+Banalyzer builds upon several outstanding open-source projects that make modern machine learning development possible.
+
+Special thanks to the communities behind:
 
 - TensorFlow
 - Streamlit
@@ -432,20 +554,21 @@ This project builds upon several excellent open-source technologies:
 - Matplotlib
 - Scikit-learn
 
-Their tools made this project possible.
+Their contributions to the open-source ecosystem made this project possible.
 
 
 # Author
 
 **Shiva Poojith Alli**
 
-Machine Learning | Computer Vision | Python | Software Engineering
+Machine Learning • Computer Vision • Python • Software Engineering
 
-LinkedIn: [Shiva Poojith Alli](https://www.linkedin.com/in/shiva-poojith-alli)
+I'm passionate about building AI-powered applications that combine machine learning with clean software engineering practices.
 
-GitHub: [Shivv-Dev](https://github.com/Shivv-Dev)
+- GitHub: ...
+- LinkedIn: ...
 
-If you found this project interesting, feel free to connect or reach out.
+If you enjoyed this project, feel free to connect or explore my other work.
 
 
 # License
@@ -457,7 +580,8 @@ See the [LICENSE](LICENSE) file for more information.
 
 ---
 
-If you found this project interesting, consider giving it a ⭐ on GitHub.
+If you found this project interesting,
+consider giving it a ⭐ on GitHub.
 
 Feedback, suggestions, and contributions are always welcome.
 
